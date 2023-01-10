@@ -9,5 +9,11 @@ fn main() {
     ];
 
     // Implement the write_words_to_file function
-    //write_words_to_file(&file_path, &words);
+    write_words_to_file(&file_path, &words).expect("Could not write to file...");
+}
+
+fn write_words_to_file(path: &str, words: &Vec<String>) -> Result<(), std::io::Error> {
+    let text: String = words.join(" ");
+    std::fs::write(path, text)?;
+    Ok(())
 }
